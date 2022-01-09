@@ -1,0 +1,64 @@
+﻿@model IEnumerable<OT.Models.questionsModel>
+
+@{
+    ViewData["Title"] = "Question";
+}
+
+<h1>Question @TempData.Peek("count").ToString() out of  @TempData.Peek("totalQuestions").ToString()</h1>
+
+
+<table class="table" border="0">
+
+    <tbody>
+        <form method="post" action="@Url.Action("Submit", "Questions")">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td colspan="2">
+                        @Html.DisplayFor(modelItem => item.Question)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0">
+
+                            <tr>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" class="radio" name="Ans1" />@Html.DisplayFor(modelItem => item.Ans1)
+                                    </label>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" class="radio" name="Ans2" />@Html.DisplayFor(modelItem => item.Ans2)
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" class="radio" name="Ans3" />@Html.DisplayFor(modelItem => item.Ans3)
+                                    </label>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" class="radio" name="Ans4" />@Html.DisplayFor(modelItem => item.Ans4)
+                                    </label>
+                                </td>
+
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" name="submit" value="Next" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+                <input type="hidden" name="id" value="@item.id" />
+            }
+        </form>
+    </tbody>
+</table>
